@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TON Testnet Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tweetnacl/1.0.3/nacl.min.js"></script>
+</head>
+<body>
+  <div class="scanline"></div>
+  <div class="noise"></div>
+
+  <header>
+    <div class="logo">
+      <span class="logo-gem">◆</span>
+      <span>TON<em>Lab</em></span>
+    </div>
+    <div class="network-badge">TESTNET</div>
+   
+  </header>
+
+  <main>
+    <!-- USERS PANEL -->
+    <section class="panel" id="users-panel">
+      <div class="panel-header">
+        <h2>01 / Users</h2>
+        <button class="btn-add" onclick="openAddUser()">+ Add User</button>
+        <!-- Add this button near the Add User button -->
+      </div>
+      <div id="user-list" class="user-grid"></div>
+    </section>
+
+    <!-- SEND TON -->
+    <section class="panel" id="send-panel">
+      <div class="panel-header">
+        <h2>02 / Send TON</h2>
+      </div>
+      <div class="form-grid">
+        <label>From
+          <select id="send-from"></select>
+        </label>
+        <label>To
+          <select id="send-to"></select>
+        </label>
+        <label>Amount (TON)
+          <input id="send-amount" type="number" placeholder="0.1" step="0.01" min="0.01"/>
+        </label>
+        <label>Comment (optional)
+          <input id="send-comment" type="text" placeholder="Lab payment"/>
+        </label>
+      </div>
+      <button class="btn-primary" onclick="sendTON()">Send TON →</button>
+      <div id="send-ton-status" class="status-msg"></div>
+    </section>
+
+    <!-- SEND USDT -->
+    <!-- <section class="panel" id="usdt-panel">
+      <div class="panel-header">
+        <h2>03 / Send USDT Jetton</h2>
+        <span class="badge-usdt">JETTON</span>
+      </div>
+      <div class="form-grid">
+        <label>From
+          <select id="usdt-from"></select>
+        </label>
+        <label>To
+          <select id="usdt-to"></select>
+        </label>
+        <label>Amount (USDT)
+          <input id="usdt-amount" type="number" placeholder="1" step="0.01" min="0.01"/>
+        </label>
+      </div>
+      <button class="btn-primary usdt-btn" onclick="sendUSDT()">Send USDT →</button>
+      <div id="send-usdt-status" class="status-msg"></div>
+    </section> -->
+
+    <!-- DEPOSITS -->
+    <section class="panel" id="deposits-panel">
+      <div class="panel-header">
+        <h2>04 / Deposit Monitor</h2>
+        <button class="btn-refresh" onclick="refreshAll()">↻ Refresh</button>
+      </div>
+      <p class="hint">Auto-refreshes every 30s.</p>
+      <div id="deposits-container" class="deposits-grid"></div>
+    </section>
+  </main>
+
+
+  <!-- ADD USER MODAL -->
+  <div id="modal-overlay" class="modal-overlay hidden" onclick="closeModal(event)">
+    <div class="modal">
+      <h3>Add User / Generate Wallet</h3>
+      <label>Display Name
+        <input id="modal-name" type="text" placeholder="Alice" />
+      </label>
+
+      <div class="modal-gen-row">
+        <button class="btn-generate" onclick="generateNewWallet()">Generate Wallet</button>
+        <span id="modal-gen-status" class="gen-status"></span>
+      </div>
+
+      <label>TON Testnet Address
+        <input id="modal-address" type="text" placeholder="Auto-filled after Generate, or paste EQ…" />
+      </label>
+
+      <input id="modal-privkey" type="hidden" value="" />
+      <input id="modal-pubkey"  type="hidden" value="" />
+
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeAddUser()">Cancel</button>
+        <button class="btn-primary" onclick="addUser()">Add User</button>
+      </div>
+      <div id="modal-error" class="error-msg"></div>
+    </div>
+  </div>
+
+  <!-- TX DETAIL MODAL -->
+  <div id="tx-modal-overlay" class="modal-overlay hidden" onclick="closeTxModal(event)">
+    <div class="modal wide-modal">
+      <h3 id="tx-modal-title">Transactions</h3>
+      <div id="tx-modal-body" class="tx-list"></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeTxModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY INFO MODAL -->
+  <div id="key-modal-overlay" class="modal-overlay hidden" onclick="closeKeyModal(event)">
+    <div class="modal wide-modal">
+      <h3 id="key-modal-title">Wallet Keys</h3>
+      <div id="key-modal-body" class="key-list"></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeKeyModal()">Close</button>
+      </div>
+    </div>
+  </div>
+<script src="https://unpkg.com/tonweb@0.0.66/dist/tonweb.js"></script>
+
+  <script src="ton-connect2.js"></script>
+  <script src="app2.js"></script>
+  <!-- Add these scripts to your HTML before your other scripts -->
+<script src="https://unpkg.com/@tonconnect/ui@1.0.0/dist/tonconnect-ui.js"></script>
+<script>
+  // Initialize TonConnect UI
+  window.onload = () => {
+    if (window.TonConnectUI) {
+      window.tonConnectUI = new window.TonConnectUI({
+        manifestUrl: 'https://ton-connect.github.io/demo-dapp-with-react-ui/tonconnect-manifest.json',
+        buttonRootId: 'ton-connect-button'
+      });
+    }
+  };
+</script>
+<script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+  <!-- Load libraries in correct order -->
+<script src="https://unpkg.com/tonweb@0.0.66/dist/tonweb.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tweetnacl/1.0.3/nacl.min.js"></script>
+<script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+
+<!-- Your custom scripts -->
+<script src="ton-connect2.js"></script>
+<script src="app2.js"></script>
+
+<script>
+  // Initialize TonConnect after all scripts load
+  window.addEventListener('load', async () => {
+    if (window.initTonConnectUI) {
+      await window.initTonConnectUI();
+    }
+  });
+</script>
+</body>
+</html>

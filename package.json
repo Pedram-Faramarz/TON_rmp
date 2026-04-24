@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@ton/core": "^0.63.1"
+  }
+}

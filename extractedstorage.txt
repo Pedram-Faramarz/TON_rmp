@@ -1,0 +1,21 @@
+Open browser console (F12 → Console tab) and run:
+Export — copy this and save it somewhere safe:
+javascript
+
+copy(localStorage.getItem('ton_lab_users_v2'));
+
+
+This copies your data to clipboard. Paste it in a text file and save it.
+
+
+Import — paste your saved data back:
+javascript
+
+localStorage.setItem('ton_lab_users_v2', 'PASTE_YOUR_JSON_HERE');
+location.reload();
+
+
+
+'[{"id":"u_1776806701101","name":"Pedram","address":"0QCytw1MMvfGP9l7QLXrenSJT-Uavv_m1oDJA8XBQy9VQkA4","privateKey":"7eb9efef3c98757c605d36f92fb4bf0f411813364de718f3ab11a2eaa99fb40908d5cb18d95fc9bc3b2683099779faa94d454af66c38f9ab99caa64b4151a481","publicKey":"08d5cb18d95fc9bc3b2683099779faa94d454af66c38f9ab99caa64b4151a481","tonBalance":"1.7510","usdtBalance":"0.00","walletState":"active"},{"id":"u_1776806707405","name":"Faramarz","address":"0QBqR0Ed6MAvVsrZ1b5p1iKJtR6mzW_Legi3W8tEzN5vOfQq","privateKey":"9ffdbb5bc73ba9e7e7a02488bb904e9344795a5418c4f6e37335245f95d233e778935b880fcf4e30f5f8601d4a49e3af0e3cfef334e9310dd5a014f37fca2a58","publicKey":"78935b880fcf4e30f5f8601d4a49e3af0e3cfef334e9310dd5a014f37fca2a58","tonBalance":"0.1454","usdtBalance":"0.00","walletState":"active"},{"id":"u_1776809416158","name":"K","address":"0QARy1v4w7PLxW8XzKPf6Aq74xN7xVKuzRLTe_JkHEuixLN7","privateKey":"429fe5b33b3ee2f1121744bbc755ad8afb120daf10b5be27de0ebc5066459370f81aa2844ec6aeba9ca1ed336b6d710b99cf371e3bf81c20de73cff168887ce8","publicKey":"f81aa2844ec6aeba9ca1ed336b6d710b99cf371e3bf81c20de73cff168887ce8","tonBalance":"0.0422","usdtBalance":"0.00","walletState":"active"}]'
+
+{"id":"u_1776806701101","name":"Pedram","address":"0QCytw1MMvfGP9l7QLXrenSJT-Uavv_m1oDJA8XBQy9VQkA4","privateKey":"7eb9efef3c98757c605d36f92fb4bf0f411813364de718f3ab11a2eaa99fb40908d5cb18d95fc9bc3b2683099779faa94d454af66c38f9ab99caa64b4151a481","publicKey":"08d5cb18d95fc9bc3b2683099779faa94d454af66c38f9ab99caa64b4151a481","tonBalance":"1.6487","usdtBalance":"0.00","walletState":"active"},{"id":"u_1776806707405","name":"Faramarz","address":"0QBqR0Ed6MAvVsrZ1b5p1iKJtR6mzW_Legi3W8tEzN5vOfQq","privateKey":"9ffdbb5bc73ba9e7e7a02488bb904e9344795a5418c4f6e37335245f95d233e778935b880fcf4e30f5f8601d4a49e3af0e3cfef334e9310dd5a014f37fca2a58","publicKey":"78935b880fcf4e30f5f8601d4a49e3af0e3cfef334e9310dd5a014f37fca2a58","tonBalance":"0.1454","usdtBalance":"0.00","walletState":"active"},{"id":"u_1776809416158","name":"K","address":"0QARy1v4w7PLxW8XzKPf6Aq74xN7xVKuzRLTe_JkHEuixLN7","privateKey":"429fe5b33b3ee2f1121744bbc755ad8afb120daf10b5be27de0ebc5066459370f81aa2844ec6aeba9ca1ed336b6d710b99cf371e3bf81c20de73cff168887ce8","publicKey":"f81aa2844ec6aeba9ca1ed336b6d710b99cf371e3bf81c20de73cff168887ce8","tonBalance":"0.0422","usdtBalance":"0.00","walletState":"active"},{"id":"u_1777041763501","name":"Alice","address":"0QCZWZZDIvUJprcZyI1QyNSccqcV-djuk1IxKsakjnOna3BH","privateKey":"89be47ff8bdbca7137c2f2cf83a7b31ddd7b75b06e2daced2719b3730a3c36919cf45b648234fc5f5da700af9ce68f0c97b02e8f9fbb2f178b8dd4ae8a55d56a","publicKey":"9cf45b648234fc5f5da700af9ce68f0c97b02e8f9fbb2f178b8dd4ae8a55d56a","tonBalance":"0.0967","usdtBalance":"0.00","walletState":"active"}
